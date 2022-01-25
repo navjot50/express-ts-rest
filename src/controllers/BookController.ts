@@ -21,7 +21,7 @@ class BookController {
         this.bookRepo = bookRepository;
     }
 
-    async getAllBooks(req: Request, res: Response) {
+    getAllBooks = async (req: Request, res: Response) => {
         const { query } = req;
         const pageSize = query.pageSize ? parseInt(query.pageSize as string) : 5;
         const page = query.page ? parseInt(query.page as string) : 1;
@@ -34,7 +34,7 @@ class BookController {
         return res.status(200).json(books);
     }
 
-    async addBook(req: Request, res: Response) {
+    addBook = async (req: Request, res: Response) => {
         const bookDto = req.body as BookDto;
         const bookResult = Book.create(bookDto);
         if(!bookResult.isSuccess) {
@@ -52,7 +52,7 @@ class BookController {
         });
     }
 
-    async getBook(req: Request, res: Response) {
+    getBook = async (req: Request, res: Response) => {
         const id = req.params.id;
 
         const bookResult = await this.bookRepo.getBook(id);
@@ -65,7 +65,7 @@ class BookController {
         return res.status(200).json(bookResult.result);
     }
 
-    async updateBook(req: Request, res: Response) {
+    updateBook = async (req: Request, res: Response) => {
         const id = req.params.id;
         const bookDto = req.body as BookDto;
         const bookResult = Book.create(bookDto);
@@ -86,7 +86,7 @@ class BookController {
         return res.status(200).json(updateResult.result);
     }
 
-    async removeBook(req: Request, res: Response) {
+    removeBook = async (req: Request, res: Response) => {
         const id = req.params.id;
         const deleteResult = await this.bookRepo.deleteBook(id);
         if(!deleteResult.isSuccess) {

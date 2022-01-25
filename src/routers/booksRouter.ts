@@ -7,12 +7,12 @@ const booksRouter = express.Router();
 const bookController = new BookController(bookRepo);
 
 booksRouter.route('/books')
-    .get(asyncHandler(bookController.getAllBooks.bind(bookController)))
-    .post(asyncHandler(bookController.addBook.bind(bookController)));
+    .get(asyncHandler(bookController.getAllBooks))
+    .post(asyncHandler(bookController.addBook))
 
 booksRouter.route('/books/:id')
-    .get(asyncHandler(bookController.getBook.bind(bookController)))
-    .put(asyncHandler(bookController.updateBook.bind(bookController)))
-    .delete(asyncHandler(bookController.removeBook.bind(bookController)));
+    .get(asyncHandler(bookController.getBook))
+    .put(asyncHandler(bookController.updateBook))
+    .delete(asyncHandler(bookController.removeBook));
 
 export default booksRouter;
